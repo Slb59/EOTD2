@@ -1,11 +1,9 @@
-from eotd2.models import Zombi, Zombis
-from eotd2.models import Market
+from eotd2.controllers import Manager
+
 
 def main():
-    market = Market()
-    market.complete_stall()
-    for tool in market.stall:
-        print(tool)
+    manager = Manager()
+    manager.display_map()
 
 if __name__ == "__main__":
     main()

@@ -21,6 +21,23 @@ class Zombis:
 
     def __repr__(self) -> str:
         return str(self.zombi_spot)
+    
+    def __iter__(self):
+        self.n = 0
+        return self
+    
+    def __next__(self):
+        if self.n < len(self.zombi_spot):            
+            self.n +=1
+            return self.zombi_spot[self.n-1]
+        else:
+            raise StopIteration
+            
 
     def select(self) -> Zombi:
-        return self.zombi_spot[random.randint(0,5)]
+        i = random.randint(0,5)
+        zombi = self.zombi_spot.pop(i)
+        return zombi
+    
+    def __len__(self):
+        return len(self.zombi_spot) 
