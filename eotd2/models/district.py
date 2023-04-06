@@ -9,5 +9,5 @@ class District:
         result = f"{self.nb_of_zombis} zombis"
         result += f"{' * ' if self.event else ''}"
         result += f"{' ^|| ' if self.istown else ''}"
-        result += f"{'YOU ARE SAFE' if self.ishospital else ''}"
+        result += f"{' YOU ARE SAFE' if self.ishospital else ''}"
         return result

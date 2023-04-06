@@ -1,3 +1,4 @@
+import random
 from eotd2.models import Zombis
 from .district import District
 from .track import Track
@@ -54,6 +55,14 @@ class DiceRoad(ActivationZone):
         result = f"PISTE DE DES [{'ACTIVE' if self.enable else 'INACTIVE'}]"
         result += ': ' + str(self.dice)
         return result
+    
+    def activate(self):
+        self.enable = 1
+
+    def throwdice(self):
+        self.dice=[]
+        for i in range(self.nb_of_dice):
+            self.dice[i] = random.randint(1,6)
 
 class HandTools(ActivationZone):
     def __init__(self) -> None:
@@ -117,10 +126,10 @@ class CityRoad(ActivationZone):
         self.districts.append(District(0,ishospital=True))
         
     def __str__(self) -> str:
-        result=f"PELOUSE, position={self.caro_position}: {self.districts[self.caro_position]}" + '\n'
+        result=f"PELOUSE, position={self.caro_position}: {self.districts[self.caro_position-1]}" + '\n'
         for i in range(self.caro_position, len(self.districts)-1):
             result += f"{self.districts[i]} -> "
-        return result[:-4]
+        return result
 
 class ProgressRoad(ActivationZone):
     def __init__(self) -> None:
